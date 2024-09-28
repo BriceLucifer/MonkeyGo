@@ -16,7 +16,13 @@ const (
 
 	ASSIGN = "="
 	PLUS = "+"
-	// MINUS = "-"
+	MINUS = "-"
+	BANG = "!"
+	ASTERISK = "*"
+	SLASH = "/"
+
+	LT = "<"
+	GT = ">"
 
 	COMMA = ","
 	SEMICOLON = ";"
@@ -30,3 +36,14 @@ const (
 	LET = "LET"
 )
 
+var KEYWORDS = map[string] TokenType {
+	"fn" : FUNCTION,
+	"let" : LET,
+}
+
+func LookupIndent (ident string) TokenType {
+	if tok,ok := KEYWORDS[ident] ; ok {
+		return tok
+	}
+	return IDENT
+}
